@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fast-Pitch Reflex Tester: A sports-themed, highly precise reflex tester game designed to measure your pitch reaction times down to the millisecond.">
+  <title>Fast-Pitch Reflex Tester</title>
+  
+  <!-- Sporty, modern Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-area">
+        <span class="badge">STADIUM ARCADE</span>
+        <h1>FAST-PITCH</h1>
+        <p class="subtitle">Reflex & Timing Calibration</p>
+      </div>
+      
+      <!-- Stats Dashboard -->
+      <div class="dashboard">
+        <div class="stat-card">
+          <span class="stat-label">BEST REFLEX</span>
+          <span id="bestReflex" class="stat-value">—</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">PITCH SPEED</span>
+          <span id="pitchSpeed" class="stat-value">—</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="game-layout">
+      <!-- Game Pitch Arena -->
+      <div class="pitch-container">
+        <div class="pitch" id="pitch">
+          <!-- Pitch Markings -->
+          <div class="pitch-line pitch-line-top"></div>
+          
+          <!-- Stumps / Wickets decoration -->
+          <div class="wickets top-wickets">
+            <span class="stump"></span>
+            <span class="stump"></span>
+            <span class="stump"></span>
+          </div>
+
+          <!-- The Ball (will be animated in JS) -->
+          <div class="ball" id="ball">
+            <div class="ball-seam"></div>
+          </div>
+
+          <!-- Target Crease Zone -->
+          <div class="crease-zone" id="creaseZone">
+            <span class="crease-label">STRIKE ZONE</span>
+          </div>
+
+          <div class="wickets bottom-wickets">
+            <span class="stump"></span>
+            <span class="stump"></span>
+            <span class="stump"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls and Feedback Section -->
+      <div class="sidebar">
+        <!-- Feedback Display Panel -->
+        <div class="feedback-panel" id="feedbackPanel">
+          <span class="status-indicator" id="statusIndicator">READY</span>
+          <h2 class="feedback-text" id="feedbackText">Press Start to Pitch!</h2>
+          <span class="sub-feedback" id="subFeedback">Test your batting timing.</span>
+        </div>
+
+        <div class="controls">
+          <button id="startBtn" class="btn btn-start">
+            <span class="btn-face">START PITCH</span>
+          </button>
+          
+          <button id="strikeBtn" class="btn btn-strike" disabled>
+            <span class="btn-face">STRIKE!</span>
+          </button>
+        </div>
+
+        <div class="instructions">
+          <h3>How to Play</h3>
+          <ul>
+            <li>Click <strong>Start Pitch</strong> to load the ball.</li>
+            <li>Wait for the pitcher's release (random delay).</li>
+            <li>Hit <strong>Strike</strong> (or press <strong>Spacebar</strong>) exactly when the red ball passes through the white <strong>Strike Zone</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <p>Designed and coded by Sumraaa</p>
+    </footer>
+  </div>
+
+  <!-- Game Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
