@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neo-Brutalist Code Breaker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <header class="game-header">
+      <h1 class="logo-text">DECODE_</h1>
+      <p class="logo-sub">Mastermind Logic Game</p>
+    </header>
+
+    <main class="main-card">
+      <section class="game-board">
+        <!-- 10 rows of history -->
+        <div class="history-grid" id="historyGrid">
+          <!-- Dynamically generated rows -->
+        </div>
+      </section>
+
+      <section class="control-panel">
+        <div class="panel-section active-guess-box">
+          <h3 class="section-title">ACTIVE GUESS</h3>
+          <div class="active-row" id="activeRow">
+            <div class="slot empty" data-index="0"></div>
+            <div class="slot empty" data-index="1"></div>
+            <div class="slot empty" data-index="2"></div>
+            <div class="slot empty" data-index="3"></div>
+          </div>
+        </div>
+
+        <div class="panel-section palette-box">
+          <h3 class="section-title">COLOR PALETTE</h3>
+          <div class="color-palette" id="colorPalette">
+            <!-- 6 colors generated dynamically or statically -->
+            <button class="palette-color" data-color="#FF3366" style="background-color: #FF3366;"></button>
+            <button class="palette-color" data-color="#33FFFF" style="background-color: #33FFFF;"></button>
+            <button class="palette-color" data-color="#33FF33" style="background-color: #33FF33;"></button>
+            <button class="palette-color" data-color="#FF6600" style="background-color: #FF6600;"></button>
+            <button class="palette-color" data-color="#9933FF" style="background-color: #9933FF;"></button>
+            <button class="palette-color" data-color="#FFFFFF" style="background-color: #FFFFFF;"></button>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn btn-action btn-clear" id="clearBtn">CLEAR</button>
+          <button class="btn btn-primary btn-check" id="checkBtn" disabled>CHECK GUESS</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal for game over / win states -->
+    <div class="overlay" id="statusOverlay">
+      <div class="modal-card">
+        <h2 class="modal-title" id="modalTitle">YOU WIN!</h2>
+        <p class="modal-text" id="modalText">You cracked the code in 5 turns.</p>
+        
+        <div class="secret-reveal-container">
+          <span class="reveal-label">SECRET CODE:</span>
+          <div class="secret-row" id="secretRevealRow">
+            <!-- secret code pegs revealed here -->
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-play-again" id="playAgainBtn">PLAY AGAIN</button>
+      </div>
+    </div>
+
+    <!-- Help Modal (How to Play) -->
+    <div class="overlay active" id="helpOverlay">
+      <div class="modal-card help-modal-card">
+        <h2 class="modal-title" style="color: var(--charcoal);">HOW TO PLAY</h2>
+        <p class="modal-text" style="font-size: 0.95rem; margin-bottom: 16px;">
+          Find the secret combination of 4 colors chosen from the 6 palette options. Colors can repeat in the secret sequence. You have 10 turns.
+        </p>
+        
+        <div class="help-legend">
+          <div class="legend-item">
+            <span class="feedback-dot exact"></span>
+            <span class="legend-text"><strong>Exact Match</strong> (Right color, right position)</span>
+          </div>
+          <div class="legend-item">
+            <span class="feedback-dot partial">m</span>
+            <span class="legend-text"><strong>Misplaced Match</strong> (Right color, wrong position)</span>
+          </div>
+          <div class="legend-item">
+            <span class="feedback-dot empty"></span>
+            <span class="legend-text"><strong>Incorrect Match</strong> (Color is not in secret code)</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-play-again" id="closeHelpBtn">START PLAYING</button>
+      </div>
+    </div>
+
+    <footer class="app-footer">
+      <p class="signature">Designed and coded by Sumraaa</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
