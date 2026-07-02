@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique Stack Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,800;1,9..40,400&family=Josefin+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Grainy retro noise overlay -->
+  <div class="noise-overlay"></div>
+
+  <div class="app-wrapper">
+    <header class="app-header">
+      <h1 class="brand-title">Boutique Stack Builder</h1>
+      <p class="brand-subtitle">A game of precision & design harmony</p>
+    </header>
+
+    <main class="game-container" id="gameContainer" tabindex="0">
+      <!-- Game HUD -->
+      <div class="hud">
+        <div class="score-card">
+          <span class="hud-label">height</span>
+          <span class="hud-value" id="currentScore">0</span>
+        </div>
+        <div class="combo-badge" id="comboBadge">
+          <span id="comboText">PERFECT x0</span>
+        </div>
+        <div class="score-card best-score-card">
+          <span class="hud-label">best</span>
+          <span class="hud-value" id="bestScore">0</span>
+        </div>
+      </div>
+
+      <!-- Play Area / Tower Wrapper -->
+      <div class="play-area" id="playArea">
+        <div class="tower-container" id="towerContainer">
+          <!-- Blocks will be dynamically generated here -->
+        </div>
+        <!-- Perfect alignment success flash/overlay effect -->
+        <div class="flash-effect" id="flashEffect"></div>
+      </div>
+
+      <!-- Screen Overlays -->
+      <div class="screen-overlay active" id="startScreen">
+        <div class="overlay-content">
+          <div class="decorative-shapes">
+            <span class="shape circle"></span>
+            <span class="shape stripe"></span>
+            <span class="shape semi"></span>
+          </div>
+          <h2 class="overlay-title">Stack in Style</h2>
+          <p class="overlay-description">
+            Press the <strong>Spacebar</strong> or <strong>Click/Tap</strong> to drop the sliding block. Align them perfectly to build a towering work of mid-century art.
+          </p>
+          <button class="btn btn-primary" id="startButton">Start Building</button>
+        </div>
+      </div>
+
+      <div class="screen-overlay" id="gameOverScreen">
+        <div class="overlay-content">
+          <h2 class="overlay-title">Tower Collapsed</h2>
+          <div class="results-display">
+            <div class="result-item">
+              <span class="result-label">Final Height</span>
+              <span class="result-value" id="finalScore">0</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Peak Combo</span>
+              <span class="result-value" id="peakCombo">0</span>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="restartButton">Build Anew</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-decor"></div>
+      <p class="signature">Designed and coded by Sumraaa</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
