@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber-Tactical Grid Arena</title>
+  <!-- Google Fonts for Tactical Terminal look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Scanline & Ambient Overlay for Retro-Cyber Aesthetic -->
+  <div class="scanlines"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="app-container">
+    <!-- Header Area -->
+    <header class="game-header">
+      <div class="header-logo">
+        <span class="logo-accent">CYBER-TACTICAL</span>
+        <span class="logo-title">GRID ARENA</span>
+      </div>
+      <div class="system-status">
+        <span class="status-indicator online"></span>
+        <span class="status-text">SYS_STATUS: ACTIVE</span>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Grid -->
+    <main class="dashboard">
+      <!-- Left Column: Status HUDs -->
+      <section class="hud-panel">
+        <!-- Player HUD -->
+        <div class="hud-card player-hud" id="player-hud-card">
+          <div class="hud-header">
+            <div class="hud-label">OPERATOR // BLUE_SHADOW</div>
+            <div class="hud-faction">PLAYER_UNIT [P]</div>
+          </div>
+          <div class="hud-body">
+            <div class="stat-row">
+              <span class="stat-name">INTEGRITY (HP)</span>
+              <span class="stat-value" id="player-hp-text">100 / 100</span>
+            </div>
+            <div class="hp-bar-container">
+              <div class="hp-bar-fill player-hp-fill" id="player-hp-bar" style="width: 100%;"></div>
+            </div>
+            <div class="stat-row ap-row">
+              <span class="stat-name">ACTION POINTS (AP)</span>
+              <div class="ap-nodes" id="player-ap-nodes">
+                <span class="ap-node active"></span>
+                <span class="ap-node active"></span>
+                <span class="ap-node active"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bot HUD -->
+        <div class="hud-card bot-hud" id="bot-hud-card">
+          <div class="hud-header">
+            <div class="hud-label">ENEMY_AI // RED_STALKER</div>
+            <div class="hud-faction">BOT_UNIT [B]</div>
+          </div>
+          <div class="hud-body">
+            <div class="stat-row">
+              <span class="stat-name">INTEGRITY (HP)</span>
+              <span class="stat-value" id="bot-hp-text">100 / 100</span>
+            </div>
+            <div class="hp-bar-container">
+              <div class="hp-bar-fill bot-hp-fill" id="bot-hp-bar" style="width: 100%;"></div>
+            </div>
+            <div class="stat-row ap-row">
+              <span class="stat-name">ACTION POINTS (AP)</span>
+              <div class="ap-nodes" id="bot-ap-nodes">
+                <span class="ap-node"></span>
+                <span class="ap-node"></span>
+                <span class="ap-node"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Center Column: The Tactical Grid -->
+      <section class="grid-panel">
+        <div class="grid-wrapper">
+          <!-- Grid coords overlay -->
+          <div class="grid-coords-y">
+            <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+          </div>
+          <div class="grid-coords-x">
+            <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+          </div>
+          <!-- 6x6 Grid Container -->
+          <div class="arena-grid" id="arena-grid">
+            <!-- Dynamic cells and tokens will be injected by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Controls & System Terminal -->
+      <section class="control-panel">
+        <!-- Action Buttons -->
+        <div class="actions-card">
+          <div class="card-title">COMMANDS</div>
+          <div class="action-buttons">
+            <button class="btn btn-move" id="btn-move">
+              <span class="btn-icon">⚡</span>
+              <span class="btn-label">MOVE MODE [1 AP]</span>
+            </button>
+            <button class="btn btn-attack" id="btn-attack">
+              <span class="btn-icon">⚔️</span>
+              <span class="btn-label">ATTACK MODE [2 AP]</span>
+            </button>
+            <button class="btn btn-end-turn" id="btn-end-turn">
+              <span class="btn-icon">⏹</span>
+              <span class="btn-label">END TURN [RESET]</span>
+            </button>
+          </div>
+          <div class="action-helper" id="action-helper">
+            SELECT A COMMAND TO BEGIN ACTION PROTOCOL.
+          </div>
+        </div>
+
+        <!-- Terminal System Logs -->
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-title">ACTION_LOG_TERMINAL v4.2</div>
+            <div class="terminal-actions">
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+            </div>
+          </div>
+          <div class="terminal-logs" id="terminal-logs">
+            <!-- Dynamic terminal entries will be appended here -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Game Over overlay modal -->
+    <div class="modal-overlay hidden" id="game-over-modal">
+      <div class="modal-content">
+        <div class="modal-glitch-title" id="winner-title">DEPLOYMENT COMPLETED</div>
+        <div class="modal-subtitle" id="winner-subtitle">OPERATOR SECURED VICTORY</div>
+        <div class="modal-stats">
+          <p>FINAL COMBAT METRICS ANALYZED</p>
+          <div class="stat-metric">
+            <span>OPERATOR HP:</span>
+            <span id="end-player-hp">100%</span>
+          </div>
+          <div class="stat-metric">
+            <span>ENEMY AI HP:</span>
+            <span id="end-bot-hp">0%</span>
+          </div>
+        </div>
+        <button class="btn-deploy-again" id="btn-restart">
+          RE-DEPLOY UNIT (RESET)
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer Signature (STRICT RULE: "Designed and coded by Sumraaa") -->
+    <footer class="game-footer">
+      <div class="footer-credit">Designed and coded by Sumraaa</div>
+      <div class="footer-serial">SECURE_CONNECTION // PROT_4_ARENA</div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
