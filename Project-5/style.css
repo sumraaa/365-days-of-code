@@ -1,0 +1,405 @@
+/* --- Telemetry CSS Theme --- */
+:root {
+  --bg-space: #03060f;
+  --bg-panel: rgba(8, 12, 24, 0.75);
+  --border-glow: rgba(0, 240, 255, 0.25);
+  --border-glow-focus: rgba(0, 240, 255, 0.6);
+  
+  /* Neon Radar colors */
+  --neon-cyan: #00f0ff;
+  --neon-green: #39ff14;
+  --neon-orange: #ff9900;
+  --neon-red: #ff3333;
+  --text-dim: #5c6c84;
+  --text-light: #e6f0fa;
+
+  --font-hud: 'Orbitron', sans-serif;
+  --font-ui: 'Rajdhani', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  background-color: var(--bg-space);
+  color: var(--text-light);
+  font-family: var(--font-ui);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+/* CRT Screen Scanline/Glow Effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.04),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.04)
+  );
+  background-size: 100% 4px, 6px 100%;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-bottom: 30px; /* footer offset */
+}
+
+/* --- Telemetry Header --- */
+.telemetry-header {
+  height: 60px;
+  background: rgba(4, 7, 15, 0.9);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  color: var(--neon-cyan);
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.telemetry-header h1 {
+  font-family: var(--font-hud);
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #fff;
+}
+
+.status-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(57, 255, 20, 0.05);
+  text-shadow: 0 0 5px var(--neon-green);
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+/* --- Workspace Layout --- */
+.workspace {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+  height: calc(100vh - 90px);
+}
+
+/* Control Panel (Sidebar) */
+.control-panel {
+  width: 340px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(0, 240, 255, 0.15);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  z-index: 90;
+}
+
+.panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title {
+  font-family: var(--font-hud);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
+  padding-bottom: 4px;
+}
+
+/* HUD Grid */
+.hud-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.hud-card {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hud-label {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.hud-value {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.highlight-cyan {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+
+.highlight-green {
+  color: var(--neon-green);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+}
+
+/* Interactive Controls UI */
+.controls-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.control-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control-item label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+  font-family: var(--font-hud);
+  font-weight: 600;
+}
+
+/* Checkbox alignment */
+.checkbox-item {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  margin: 4px 0;
+}
+
+.checkbox-item label {
+  cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"] {
+  accent-color: var(--neon-cyan);
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* Sliders */
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--neon-cyan);
+  background: #0d1527;
+  height: 6px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Buttons grid */
+.buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.btn {
+  font-family: var(--font-hud);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.btn-primary:hover {
+  background: var(--neon-cyan);
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Logger Terminal */
+.terminal-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-log {
+  flex-grow: 1;
+  background: #020409;
+  border: 1px solid rgba(0, 240, 255, 0.08);
+  border-radius: 6px;
+  padding: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  overflow-y: auto;
+  max-height: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.log-line {
+  word-break: break-all;
+}
+
+.text-muted { color: var(--text-dim); }
+.text-cyan { color: var(--neon-cyan); }
+.text-green { color: var(--neon-green); }
+.text-orange { color: var(--neon-orange); }
+.text-red { color: var(--neon-red); }
+
+/* --- Radar Screen (Canvas Container) --- */
+.simulation-screen {
+  flex-grow: 1;
+  background: #02040a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 24px;
+}
+
+.canvas-wrapper {
+  position: relative;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.05);
+  background: #000;
+}
+
+/* Technical radar layout overlays */
+#simCanvas {
+  display: block;
+}
+
+.compass-overlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 60px;
+  height: 60px;
+  border: 1px dashed rgba(0, 240, 255, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: rgba(0, 240, 255, 0.4);
+}
+
+.compass-n { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); }
+.compass-e { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); }
+.compass-s { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); }
+.compass-w { position: absolute; left: 4px; top: 50%; transform: translateY(-50%); }
+
+/* --- Fixed Footer (Strict Branding Signature) --- */
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 30px;
+  background: #03050c;
+  border-top: 1px solid rgba(0, 240, 255, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  z-index: 200;
+}
+
+.footer-credit {
+  font-family: var(--font-hud);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.footer-diagnostics {
+  font-family: var(--font-mono);
+}

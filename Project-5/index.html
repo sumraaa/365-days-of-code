@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autonomous Neural-Evolution Simulator</title>
+  <!-- High-tech typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Radar sweeping scan line effect -->
+  <div class="scanlines"></div>
+
+  <div class="app-container">
+    <!-- Telemetry Header -->
+    <header class="telemetry-header">
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <h1>NEURAL-EVOLUTION</h1>
+        <span class="status-badge">AUTO_PILOT ACTIVE</span>
+      </div>
+      <p class="subtitle">Autonomous 2D Raycasting Physics & Genetic Agent Optimization</p>
+    </header>
+
+    <!-- Main Workspace Layout -->
+    <div class="workspace">
+      <!-- Sidebar Control Panels -->
+      <aside class="control-panel">
+        <div class="panel-section">
+          <h2 class="section-title">SYSTEM telemetry</h2>
+          <div class="hud-grid">
+            <div class="hud-card">
+              <span class="hud-label">GENERATION</span>
+              <span class="hud-value" id="hud-generation">01</span>
+            </div>
+            <div class="hud-card">
+              <span class="hud-label">ALIVE COUNT</span>
+              <span class="hud-value highlight-cyan" id="hud-alive">100 / 100</span>
+            </div>
+            <div class="hud-card">
+              <span class="hud-label">BEST FITNESS</span>
+              <span class="hud-value highlight-green" id="hud-best-fitness">0</span>
+            </div>
+            <div class="hud-card">
+              <span class="hud-label">ALL-TIME BEST</span>
+              <span class="hud-value" id="hud-all-time">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h2 class="section-title">SIMULATION CONTROLS</h2>
+          <div class="controls-group">
+            <!-- Speed controls -->
+            <div class="control-item">
+              <label for="slider-speed">EXECUTION SPEED: <span id="label-speed">1x</span></label>
+              <input type="range" id="slider-speed" min="1" max="10" value="1" step="1">
+            </div>
+
+            <!-- Mutation Rate -->
+            <div class="control-item">
+              <label for="slider-mutation">MUTATION RATE: <span id="label-mutation">10%</span></label>
+              <input type="range" id="slider-mutation" min="0" max="0.5" value="0.1" step="0.01">
+            </div>
+
+            <!-- Render Toggles -->
+            <div class="control-item checkbox-item">
+              <input type="checkbox" id="check-all-rays">
+              <label for="check-all-rays">DRAW ALL SENSOR RAYS</label>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="buttons-grid">
+              <button class="btn btn-primary" id="btn-restart">
+                🧬 FORCE NEXT GEN
+              </button>
+              <button class="btn btn-secondary" id="btn-new-track">
+                🛣️ RANDOMIZE TRACK
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section terminal-section">
+          <h2 class="section-title">LOG TERMINAL</h2>
+          <div class="terminal-log" id="terminal-log">
+            <div class="log-line text-muted">[SYS] Booting neural matrices...</div>
+            <div class="log-line text-muted">[SYS] Raycast collision vectors initialized.</div>
+            <div class="log-line text-cyan">[SYS] Population 100 spawned. Gen 1 active.</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Radar Screen / Simulation Canvas -->
+      <main class="simulation-screen">
+        <div class="canvas-wrapper">
+          <canvas id="simCanvas" width="800" height="500"></canvas>
+          <div class="compass-overlay">
+            <span class="compass-n">N</span>
+            <span class="compass-e">E</span>
+            <span class="compass-s">S</span>
+            <span class="compass-w">W</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Fixed Footer (Strict Rule) -->
+    <footer class="fixed-footer">
+      <div class="footer-credit">Designed and coded by Sumraaa</div>
+      <div class="footer-diagnostics">COORD_SYS: CARTESIAN // CORE_TEMP: NOMINAL // RADAR_LOCK</div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
