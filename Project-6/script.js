@@ -377,21 +377,6 @@ function setupSideDrawer() {
         navigateTo('screen-login');
     });
 
-    // Mock Translate selectors
-    const btnVoice = document.getElementById('btn-toggle-voice');
-    const btnType = document.getElementById('btn-toggle-type');
-
-    btnVoice.addEventListener('click', () => {
-        btnVoice.classList.toggle('active');
-        btnVoice.textContent = btnVoice.classList.contains('active') ? 'Voice UI: ON' : 'Voice UI: OFF';
-        showToast(`Voice input interface ${btnVoice.classList.contains('active') ? 'enabled' : 'disabled'}`);
-    });
-
-    btnType.addEventListener('click', () => {
-        btnType.classList.toggle('active');
-        btnType.textContent = btnType.classList.contains('active') ? 'Type UI: ON' : 'Type UI: OFF';
-        showToast(`Keyboard typing translate ${btnType.classList.contains('active') ? 'enabled' : 'disabled'}`);
-    });
 }
 
 function openDrawer() {
