@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalXChange - Upgraded Cross-Border Payments</title>
+    <meta name="description" content="GlobalXChange is a sleek, secure cross-border payment and currency exchange platform. Swap currencies in real-time, link your bank accounts, and track transactions instantly.">
+    <meta name="keywords" content="fintech, currency exchange, cross-border payment, global payments, wallet, INR, USD, EUR, GBP">
+    <meta name="author" content="PMES">
+    <!-- Google Fonts - Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Phone Bezel Mockup -->
+    <div class="phone-frame">
+        <!-- Bezel Hardware -->
+        <div class="phone-notch"></div>
+        
+        <!-- Status Bar -->
+        <div class="phone-status-bar">
+            <span class="status-time" id="status-time">09:41</span>
+            <div class="status-icons">
+                <svg class="status-icon" viewBox="0 0 24 24" width="16" height="16">
+                    <path fill="currentColor" d="M12 3c-1.2 0-2.4.2-3.6.7L18.7 14c.5-1.2.7-2.4.7-3.6c0-4.4-3.6-8-7.4-8zm-9 9c0 1.2.2 2.4.7 3.6L14 5.3c-1.2-.5-2.4-.7-3.6-.7c-4.4 0-8 3.6-8 8.4zm9 9c1.2 0 2.4-.2 3.6-.7L5.3 10c-.5 1.2-.7 2.4-.7 3.6c0 4.4 3.6 8.4 7.4 8.4z" opacity="0.3"/>
+                    <path fill="currentColor" d="M2 22h20V2L2 22z"/>
+                </svg>
+                <svg class="status-icon" viewBox="0 0 24 24" width="16" height="16">
+                    <path fill="currentColor" d="M12 21l-12-12c2.9-2.9 6.8-4.5 12-4.5s9.1 1.6 12 4.5l-12 12zm0-16.5c-4.1 0-7.3 1.2-9.6 3.4l9.6 9.6 9.6-9.6c-2.3-2.2-5.5-3.4-9.6-3.4z" opacity="0.4"/>
+                    <path fill="currentColor" d="M12 21l-6-6c1.5-1.5 3.5-2.3 6-2.3s4.5.8 6 2.3l-6 6z"/>
+                </svg>
+                <svg class="status-icon" viewBox="0 0 24 24" width="18" height="18">
+                    <rect x="2" y="7" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <rect x="4" y="9" width="10" height="6" rx="1" fill="currentColor"/>
+                    <path d="M20 10v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Notification Toast Popup -->
+        <div id="notification-toast" class="notification-toast hidden">
+            <div class="toast-content">
+                <span class="toast-icon">✓</span>
+                <span class="toast-message" id="toast-message">Success!</span>
+            </div>
+        </div>
+
+        <!-- ==================== SCREEN 0: LOGIN ==================== -->
+        <div id="screen-login" class="app-page login-page active">
+            <div class="login-logo-container">
+                <div class="logo-box">
+                    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="17 1 21 5 17 9"></polyline>
+                        <path d="M3 11V9a4 4 0 0 1 4-4h14M7 23 3 19 7 15"></path>
+                        <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                    </svg>
+                </div>
+                <h2>GlobalXChange</h2>
+                <p>Premium Cross-Border Wallet</p>
+            </div>
+
+            <form id="login-form" class="login-form">
+                <div class="input-group">
+                    <label for="login-name">Full Name</label>
+                    <input type="text" id="login-name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="login-bank">Primary Bank Name</label>
+                    <input type="text" id="login-bank" placeholder="e.g. State Bank of India" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="login-account">Account Number</label>
+                    <input type="text" id="login-account" placeholder="e.g. 501002938472" pattern="\d{8,18}" title="Please enter a valid 8-18 digit account number" required>
+                </div>
+
+                <div class="login-terms">
+                    <input type="checkbox" id="login-agree" required checked>
+                    <label for="login-agree">I agree to PMES terms and security policies.</label>
+                </div>
+
+                <button type="submit" class="primary-btn btn-full">
+                    <span>Secure Sign In</span>
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- ==================== HEADER BAR (Dashboard & Main pages) ==================== -->
+        <div id="app-header-bar" class="app-header-bar hidden">
+            <!-- Hamburger menu button -->
+            <button class="header-menu-btn" id="btn-hamburger" aria-label="Open side drawer">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            
+            <div class="header-logo-text">GlobalXChange</div>
+            
+            <div class="header-right-actions">
+                <!-- Clickable Notification Bell -->
+                <div class="notification-btn" id="btn-notification-bell">
+                    <span class="bell-badge" id="bell-badge-indicator"></span>
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </div>
+                <!-- Profile thumbnail -->
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%232563eb'/><text x='50' y='60' font-size='32' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>U</text></svg>" alt="Avatar" class="user-avatar" id="header-avatar-btn">
+            </div>
+
+            <!-- Notifications drop-down panel -->
+            <div id="notifications-dropdown" class="notifications-dropdown hidden">
+                <div class="dropdown-header">
+                    <h4>Notifications</h4>
+                    <button class="clear-search-btn" id="btn-clear-notifications">Clear All</button>
+                </div>
+                <div class="notifications-list" id="notifications-list-container">
+                    <!-- Notifications populated dynamically in JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Main screen view content box -->
+        <div class="app-screen hidden" id="app-screen-container">
+
+            <!-- ==================== SCREEN 1: DASHBOARD ==================== -->
+            <section id="screen-dashboard" class="app-page active">
+                <div class="dashboard-greeting-bar">
+                    <span class="greeting-sub">Welcome back,</span>
+                    <h1 class="greeting-title" id="dashboard-user-name">User</h1>
+                </div>
+
+                <!-- Balance Card (With Currency Conversion Toggle selector) -->
+                <div class="wallet-card">
+                    <div class="wallet-background-glow"></div>
+                    <div class="wallet-card-header">
+                        <span class="wallet-label">Wallet Valuation</span>
+                        <!-- Currency Selector Dropdown Toggle -->
+                        <div class="balance-currency-selector">
+                            <span class="selected-val-cur" id="selected-balance-currency">INR</span>
+                            <svg class="chevron-down" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                            <select id="select-val-currency-hidden" class="hidden-select-trigger">
+                                <!-- Populated dynamically from 40+ currencies in JS -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="wallet-balance-row">
+                        <span class="currency-symbol" id="dashboard-balance-symbol">₹</span>
+                        <span class="balance-amount" id="inr-balance-display">1,50,000.00</span>
+                        <span class="currency-code" id="dashboard-balance-code">INR</span>
+                    </div>
+
+                    <div class="wallet-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon-wrapper income">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                                    <polyline points="5 12 12 5 19 12"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="stat-label">Inflow</span>
+                                <p class="stat-value text-green" id="inflow-display">+₹50,000.00</p>
+                            </div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-icon-wrapper expense">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <polyline points="19 12 12 19 5 12"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="stat-label">Outflow</span>
+                                <p class="stat-value text-slate" id="outflow-display">-₹12,845.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Send to Contacts Bar (Feature 9) -->
+                <div class="contacts-bar-section">
+                    <h2 class="section-title">Send to Contacts</h2>
+                    <div class="contacts-scroll-row" id="contacts-scroll-container">
+                        <!-- Contacts dynamically loaded in JS -->
+                    </div>
+                </div>
+
+                <!-- Quick Action Grid -->
+                <div class="quick-actions-section">
+                    <div class="actions-grid">
+                        <button class="action-btn" id="btn-deposit-money">
+                            <div class="action-icon deposit-bg">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </div>
+                            <span class="action-label">Add Money</span>
+                        </button>
+                        <button class="action-btn" id="btn-send-money">
+                            <div class="action-icon send-bg">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </div>
+                            <span class="action-label">Send Money</span>
+                        </button>
+                        <button class="action-btn" id="btn-nav-exchange">
+                            <div class="action-icon exchange-bg">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="17 1 21 5 17 9"></polyline>
+                                    <path d="M3 11V9a4 4 0 0 1 4-4h14M7 23 3 19 7 15"></path>
+                                    <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                                </svg>
+                            </div>
+                            <span class="action-label">Exchange</span>
+                        </button>
+                        <button class="action-btn" id="btn-nav-bank">
+                            <div class="action-icon bank-bg">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+                                    <path d="M12 2 2 7v4h20V7L12 2zM12 11v11M6 11v11M18 11v11"></path>
+                                </svg>
+                            </div>
+                            <span class="action-label">Linked Banks</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live FX Interactive Widget (Feature 4) -->
+                <div class="ticker-section live-fx-widget">
+                    <div class="section-header">
+                        <h2 class="section-title">Live FX Interactive</h2>
+                        <span class="live-indicator">
+                            <span class="live-dot animate-pulse"></span> Dynamic
+                        </span>
+                    </div>
+
+                    <!-- Search currency for chart -->
+                    <div class="fx-search-container">
+                        <div class="search-box sm-search">
+                            <svg class="search-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="fx-chart-search-input" placeholder="Search rate (e.g. USD, EUR)..." autocomplete="off">
+                        </div>
+                        <!-- Suggestions dropdown -->
+                        <div class="fx-search-suggestions hidden" id="fx-search-suggestions-box">
+                            <!-- suggestions populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Selected Currency Quote detail -->
+                    <div class="fx-quote-details">
+                        <div class="fx-pair-heading">
+                            <span id="fx-chart-flag">🇺🇸</span>
+                            <span id="fx-chart-pair-text">USD / INR</span>
+                        </div>
+                        <div class="fx-rate-values">
+                            <span class="fx-rate-price" id="fx-chart-price-text">₹83.45</span>
+                            <span class="fx-rate-change positive" id="fx-chart-change-text">+0.12%</span>
+                        </div>
+                    </div>
+
+                    <!-- Canvas Line Chart -->
+                    <div class="canvas-chart-wrapper">
+                        <canvas id="fx-line-chart" width="350" height="130"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Activities Summary -->
+                <div class="recent-activity-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Recent Transactions</h2>
+                        <button class="see-all-btn" id="btn-see-all-transactions">See All</button>
+                    </div>
+                    <div class="activity-list" id="dashboard-activity-list">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== SCREEN 3: EXCHANGE ENGINE ==================== -->
+            <section id="screen-exchange" class="app-page hidden">
+                <div class="page-header">
+                    <h1 class="page-title">Exchange Engine</h1>
+                    <p class="page-subtitle">Type to search currencies and convert</p>
+                </div>
+
+                <div class="exchange-container">
+                    <!-- From currency container -->
+                    <div class="convert-box">
+                        <div class="convert-label-row">
+                            <label>You Send</label>
+                            <span class="available-balance-label" id="exchange-from-balance">Bal: ₹1,50,000.00</span>
+                        </div>
+                        <div class="convert-input-row">
+                            <input type="number" id="exchange-amount-from" class="exchange-input" placeholder="0.00" min="1" step="any">
+                            
+                            <!-- Searchable select from -->
+                            <div class="search-select-container" id="select-from-wrapper">
+                                <button class="search-select-trigger" id="btn-trigger-select-from">
+                                    <span class="trigger-flag">🇮🇳</span>
+                                    <span class="trigger-code">INR</span>
+                                    <svg class="chevron-down" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                                <!-- absolute drop-down panel -->
+                                <div class="search-select-panel hidden" id="panel-select-from">
+                                    <input type="text" class="select-search-field" placeholder="Search currency...">
+                                    <div class="select-options-list">
+                                        <!-- filled in JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Swap button -->
+                    <div class="swap-divider-container">
+                        <div class="divider-line"></div>
+                        <button id="btn-swap-exchange" class="swap-button" title="Swap Currencies">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8v12M17 20l4-4M17 20l-4-4"></path>
+                            </svg>
+                        </button>
+                        <div class="divider-line"></div>
+                    </div>
+
+                    <!-- To currency container -->
+                    <div class="convert-box">
+                        <div class="convert-label-row">
+                            <label>You Receive</label>
+                            <span class="available-balance-label" id="exchange-to-balance">Bal: $0.00</span>
+                        </div>
+                        <div class="convert-input-row">
+                            <input type="number" id="exchange-amount-to" class="exchange-input" placeholder="0.00" readonly>
+                            
+                            <!-- Searchable select to -->
+                            <div class="search-select-container" id="select-to-wrapper">
+                                <button class="search-select-trigger" id="btn-trigger-select-to">
+                                    <span class="trigger-flag">🇺🇸</span>
+                                    <span class="trigger-code">USD</span>
+                                    <svg class="chevron-down" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                                <!-- absolute drop-down panel -->
+                                <div class="search-select-panel hidden" id="panel-select-to">
+                                    <input type="text" class="select-search-field" placeholder="Search currency...">
+                                    <div class="select-options-list">
+                                        <!-- filled in JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quote detail box -->
+                    <div class="exchange-details-card">
+                        <div class="detail-row">
+                            <span class="detail-label">Indicative Exchange Rate</span>
+                            <span class="detail-value text-semibold" id="exchange-rate-quote">1 INR = 0.01198 USD</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Platform Processing Fee (0.2%)</span>
+                            <span class="detail-value" id="exchange-fee-quote">₹0.00</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Guaranteed Payout</span>
+                            <span class="detail-value text-green text-semibold" id="exchange-total-receive">0.00 USD</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Settlement Period</span>
+                            <span class="detail-value">Instant</span>
+                        </div>
+                    </div>
+
+                    <div id="exchange-error-msg" class="exchange-warning hidden">
+                        <svg class="warning-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"></path>
+                        </svg>
+                        <span id="exchange-error-text">Insufficient balance for this operation.</span>
+                    </div>
+
+                    <button id="btn-submit-exchange" class="primary-btn btn-full" disabled>
+                        <span>Convert Currencies</span>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+            <!-- ==================== SCREEN 6: eMONEY WALLET (Feature 6) ==================== -->
+            <section id="screen-emoney" class="app-page hidden">
+                <div class="page-header">
+                    <h1 class="page-title">eMoney Vaults</h1>
+                    <p class="page-subtitle">Segmented multi-currency wallets</p>
+                </div>
+
+                <!-- Total eMoney assets header -->
+                <div class="emoney-valuation-box">
+                    <span class="vault-label">Total Vault Assets</span>
+                    <h2 class="vault-valuation" id="emoney-valuation-display">₹1,88,450.00</h2>
+                    <span class="vault-sub">Valued in INR Base Rate</span>
+                </div>
+
+                <!-- Vault balances cards -->
+                <h3 class="section-title">My Currency Vaults</h3>
+                <div class="emoney-vaults-list" id="emoney-vaults-list-container">
+                    <!-- Populated dynamically in JS -->
+                </div>
+            </section>
+
+            <!-- ==================== SCREEN 7: LEDGER & HISTORY ==================== -->
+            <section id="screen-history" class="app-page hidden">
+                <div class="page-header">
+                    <h1 class="page-title">Ledger & History</h1>
+                    <p class="page-subtitle">Searchable, audit-ready payment ledger</p>
+                </div>
+
+                <div class="history-controls">
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="history-search-input" placeholder="Search transactions, codes...">
+                        <button class="clear-search-btn hidden" id="btn-clear-search">&times;</button>
+                    </div>
+
+                    <div class="filter-chips">
+                        <button class="filter-chip active" data-filter="all">All</button>
+                        <button class="filter-chip" data-filter="Deposit">Deposits</button>
+                        <button class="filter-chip" data-filter="Exchange">Exchanges</button>
+                        <button class="filter-chip" data-filter="Transfer">Transfers</button>
+                    </div>
+                </div>
+
+                <div class="history-list-wrapper">
+                    <div class="history-list" id="history-list-container">
+                        <!-- Dynamically filled with transactions -->
+                    </div>
+                    <div class="no-results hidden" id="history-no-results">
+                        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        <h3>No transactions found</h3>
+                        <p>Try resetting filters or changing search query.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== SCREEN 9: P2P LEDGER & CHAT (Feature 9) ==================== -->
+            <section id="screen-p2p" class="app-page hidden">
+                <!-- Back header bar -->
+                <div class="p2p-header-bar">
+                    <button class="p2p-back-btn" id="btn-p2p-back" aria-label="Go back to Dashboard">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </button>
+                    <div class="p2p-contact-profile">
+                        <div class="p2p-avatar-circle" id="p2p-contact-avatar">B</div>
+                        <div class="p2p-contact-info">
+                            <h3 id="p2p-contact-name">Bujjiiii💗💃</h3>
+                            <span class="p2p-status-online">Online</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat ledger body -->
+                <div class="p2p-chat-ledger" id="p2p-chat-ledger-container">
+                    <!-- Populated dynamically with sent/receive cards -->
+                </div>
+
+                <!-- Sticky Pay/Request buttons at bottom -->
+                <div class="p2p-sticky-actions">
+                    <button class="secondary-btn flex-1" id="btn-p2p-request">
+                        <span>Request Money</span>
+                    </button>
+                    <button class="primary-btn flex-1" id="btn-p2p-pay">
+                        <span>Pay Cash</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- ==================== SCREEN 4: PROFILE & SETTINGS ==================== -->
+            <section id="screen-profile" class="app-page hidden">
+                <div class="page-header">
+                    <h1 class="page-title">My Profile</h1>
+                    <p class="page-subtitle">Manage accounts and bank integrations</p>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-main-info">
+                        <div class="profile-avatar-large">
+                            <span id="profile-initials">U</span>
+                        </div>
+                        <div class="profile-text-details">
+                            <h2 class="profile-name" id="profile-user-display-name">User Name</h2>
+                            <p class="profile-tier-badge">Premium Wallet Tier</p>
+                            <p class="profile-wallet-id">ID: GXC-9082-1102</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-stats-row">
+                        <div class="profile-mini-stat">
+                            <span class="mini-stat-label">Currency Accounts</span>
+                            <span class="mini-stat-value" id="profile-currency-count">12 Active</span>
+                        </div>
+                        <div class="mini-stat-divider"></div>
+                        <div class="profile-mini-stat">
+                            <span class="mini-stat-label">Verification</span>
+                            <span class="mini-stat-value text-green">100% Fully KYC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QR CODE SECTION -->
+                <div class="profile-section-card qr-card">
+                    <h3 class="card-section-title">My GlobalXChange QR</h3>
+                    <p class="card-section-subtitle">Scan to transfer currency instantly</p>
+                    <div class="qr-container-box">
+                        <div class="qr-code-wrapper" id="qr-code-holder">
+                            <!-- Programmatic SVG QR code -->
+                        </div>
+                    </div>
+                    <span class="qr-caption" id="qr-caption-text">GXC-9082-1102 (User)</span>
+                </div>
+
+                <!-- BANK-LINKING SETTINGS -->
+                <div class="profile-section-card bank-linking-card">
+                    <div class="section-title-with-action">
+                        <h3 class="card-section-title">Linked Bank Accounts</h3>
+                        <button class="add-bank-btn" id="btn-add-bank-modal">+ Add Bank</button>
+                    </div>
+                    
+                    <div class="bank-list" id="linked-banks-container">
+                        <!-- Dynamically loaded in JS -->
+                    </div>
+                </div>
+
+                <!-- Demo stats reset -->
+                <div class="profile-section-card settings-card">
+                    <h3 class="card-section-title">Developer Controls</h3>
+                    <div class="settings-toggle-row">
+                        <div class="toggle-text">
+                            <span class="toggle-title">Simulate Offline Mode</span>
+                            <span class="toggle-subtitle">Trigger offline game easter egg</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-simulate-offline">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="settings-toggle-row">
+                        <div class="toggle-text">
+                            <span class="toggle-title">Reset Demo Wallet</span>
+                            <span class="toggle-subtitle">Revert balance to initial state</span>
+                        </div>
+                        <button class="secondary-btn btn-sm" id="btn-reset-wallet">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Sticky Footer Navigation Bar -->
+        <footer class="app-footer hidden" id="app-footer-nav">
+            <nav class="bottom-nav">
+                <button class="nav-item active" data-target="screen-dashboard">
+                    <svg viewBox="0 0 24 24" class="nav-icon" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="9"></rect>
+                        <rect x="14" y="3" width="7" height="5"></rect>
+                        <rect x="14" y="12" width="7" height="9"></rect>
+                        <rect x="3" y="16" width="7" height="5"></rect>
+                    </svg>
+                    <span class="nav-label">Dashboard</span>
+                </button>
+                <button class="nav-item" data-target="screen-exchange">
+                    <svg viewBox="0 0 24 24" class="nav-icon" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="17 1 21 5 17 9"></polyline>
+                        <path d="M3 11V9a4 4 0 0 1 4-4h14M7 23 3 19 7 15"></path>
+                        <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                    </svg>
+                    <span class="nav-label">Exchange</span>
+                </button>
+                <!-- Dedicated eMoney Wallet Tab -->
+                <button class="nav-item" data-target="screen-emoney">
+                    <svg viewBox="0 0 24 24" class="nav-icon" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                        <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                        <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                    </svg>
+                    <span class="nav-label">eMoney</span>
+                </button>
+                <button class="nav-item" data-target="screen-history">
+                    <svg viewBox="0 0 24 24" class="nav-icon" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span class="nav-label">History</span>
+                </button>
+                <button class="nav-item" data-target="screen-profile">
+                    <svg viewBox="0 0 24 24" class="nav-icon" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="nav-label">Profile</span>
+                </button>
+            </nav>
+            <!-- Watermark signature strictly PMES -->
+            <div class="watermark-footer">
+                PMES
+            </div>
+        </footer>
+
+        <!-- Physical Home Bar -->
+        <div class="phone-home-indicator"></div>
+    </div>
+
+    <!-- ==================== SIDE DRAWER & OVERLAYS ==================== -->
+    
+    <!-- Drawer backdrop overlay -->
+    <div id="drawer-overlay" class="drawer-overlay hidden"></div>
+
+    <!-- Side Drawer Menu (Feature 3) -->
+    <div id="side-drawer" class="side-drawer hidden">
+        <div class="drawer-header">
+            <div class="drawer-user-info">
+                <div class="drawer-avatar" id="drawer-avatar-initial">U</div>
+                <div>
+                    <h3 id="drawer-user-name">User Name</h3>
+                    <span class="drawer-badge">KYC Verified</span>
+                </div>
+            </div>
+            <button class="modal-close-btn" id="btn-close-drawer">&times;</button>
+        </div>
+        
+        <div class="drawer-content">
+            <!-- Speech Translator Widget -->
+            <div class="drawer-widget speech-translator-widget">
+                <h4 class="widget-title">Voice Translator</h4>
+                <div class="translator-input-container">
+                    <textarea id="translate-input-text" class="widget-textarea" placeholder="Speak or type text to translate..."></textarea>
+                    <button id="btn-mic" class="mic-btn" title="Start listening">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="translate-dropdown-row">
+                    <label for="translate-lang-to">Target:</label>
+                    <select id="translate-lang-to" class="widget-select">
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="hi">Hindi</option>
+                        <option value="ja">Japanese</option>
+                        <option value="de">German</option>
+                        <option value="ar">Arabic</option>
+                    </select>
+                </div>
+                <button id="btn-translate-submit" class="primary-btn btn-sm btn-full">
+                    <span>Translate</span>
+                </button>
+                <div id="translate-error-overlay" class="translate-error-overlay hidden">
+                    <div class="moving-text-marquee">
+                        <span class="moving-text">Translation feature requires active API key... &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tourist Destinations -->
+            <div class="drawer-menu-item" id="btn-drawer-tourist">
+                <div class="menu-item-icon bg-blue">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="menu-item-text">
+                    <span class="menu-title">Tourist Destinations</span>
+                    <span class="menu-sub">Simulate Google Maps exchange</span>
+                </div>
+            </div>
+
+            <!-- Security details -->
+            <div class="drawer-menu-item" id="btn-drawer-security">
+                <div class="menu-item-icon bg-green">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <div class="menu-item-text">
+                    <span class="menu-title">Security & API Keys</span>
+                    <span class="menu-sub">View platform security status</span>
+                </div>
+            </div>
+
+            <!-- Logout button -->
+            <button class="drawer-logout-btn" id="btn-drawer-logout">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"></path>
+                </svg>
+                <span>Logout Session</span>
+            </button>
+        </div>
+        <div class="drawer-footer">
+            <span>GlobalXChange Version 2.4</span>
+            <span>Branding Override: PMES</span>
+        </div>
+    </div>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- 1. PIN CONFIRMATION MODAL -->
+    <div id="pin-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-drag-indicator"></div>
+            <div class="modal-header">
+                <h3 class="modal-title">Enter Transaction PIN</h3>
+                <button class="modal-close-btn" id="btn-close-pin-modal">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="pin-instruction">Please enter your 4-digit security PIN to authorize exchange transfer.</p>
+                <div class="pin-summary-box">
+                    <div class="summary-line">
+                        <span class="summary-label">Convert Amount:</span>
+                        <span class="summary-val" id="pin-modal-from-amt">₹1,000.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span class="summary-label">Expected Recipient:</span>
+                        <span class="summary-val text-green" id="pin-modal-to-amt">$11.98</span>
+                    </div>
+                </div>
+                
+                <div class="pin-dots-container">
+                    <span class="pin-dot"></span>
+                    <span class="pin-dot"></span>
+                    <span class="pin-dot"></span>
+                    <span class="pin-dot"></span>
+                </div>
+
+                <div id="pin-error-text" class="pin-error-message hidden">Incorrect PIN. Try again. (Hint: 1234)</div>
+
+                <div class="keypad-grid">
+                    <button class="keypad-btn" data-val="1">1</button>
+                    <button class="keypad-btn" data-val="2">2</button>
+                    <button class="keypad-btn" data-val="3">3</button>
+                    <button class="keypad-btn" data-val="4">4</button>
+                    <button class="keypad-btn" data-val="5">5</button>
+                    <button class="keypad-btn" data-val="6">6</button>
+                    <button class="keypad-btn" data-val="7">7</button>
+                    <button class="keypad-btn" data-val="8">8</button>
+                    <button class="keypad-btn" data-val="9">9</button>
+                    <button class="keypad-btn text-red" data-val="clear">C</button>
+                    <button class="keypad-btn" data-val="0">0</button>
+                    <button class="keypad-btn text-slate" data-val="back">⌫</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. ADD MONEY MODAL -->
+    <div id="deposit-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-drag-indicator"></div>
+            <div class="modal-header">
+                <h3 class="modal-title">Add Money to Wallet</h3>
+                <button class="modal-close-btn" id="btn-close-deposit-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="deposit-form">
+                    <div class="input-group">
+                        <label for="deposit-amount">Amount (INR)</label>
+                        <div class="amount-input-box">
+                            <span class="currency-prefix">₹</span>
+                            <input type="number" id="deposit-amount" placeholder="5,000" min="100" max="1000000" required>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="deposit-source">Select Funding Source</label>
+                        <select id="deposit-source" class="modal-select" required>
+                            <!-- loaded dynamically -->
+                        </select>
+                    </div>
+
+                    <div class="modal-info-box">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <span>Deposits are fully secure and usually settle instantly.</span>
+                    </div>
+
+                    <button type="submit" class="primary-btn btn-full">
+                        <span>Fund Wallet</span>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. SEND MONEY MODAL (P2P & General transfers) -->
+    <div id="send-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-drag-indicator"></div>
+            <div class="modal-header">
+                <h3 class="modal-title" id="send-modal-title">Send Cash</h3>
+                <button class="modal-close-btn" id="btn-close-send-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="send-form">
+                    <div class="input-group">
+                        <label for="send-recipient-id">Recipient Wallet ID or Contact Name</label>
+                        <input type="text" id="send-recipient-id" placeholder="e.g. GXC-8800-4491 or Rahul" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="send-amount">Amount (INR)</label>
+                        <div class="amount-input-box">
+                            <span class="currency-prefix">₹</span>
+                            <input type="number" id="send-amount" placeholder="0.00" min="1" step="any" required>
+                        </div>
+                        <span class="input-subtext" id="send-available-bal">Available: ₹1,50,000.00</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="send-purpose">Purpose of Transfer (Optional)</label>
+                        <input type="text" id="send-purpose" placeholder="Family expense, grocery, bill payment...">
+                    </div>
+
+                    <div id="send-error-text" class="exchange-warning hidden">
+                        <span id="send-error-msg-content">Insufficient funds.</span>
+                    </div>
+
+                    <button type="submit" class="primary-btn btn-full">
+                        <span>Authorize Transfer</span>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. LINK BANK MODAL -->
+    <div id="add-bank-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-drag-indicator"></div>
+            <div class="modal-header">
+                <h3 class="modal-title">Link New Bank Account</h3>
+                <button class="modal-close-btn" id="btn-close-bank-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-bank-form">
+                    <div class="input-group">
+                        <label for="bank-select-name">Choose Bank Institution</label>
+                        <select id="bank-select-name" class="modal-select" required>
+                            <option value="State Bank of India">State Bank of India (SBI)</option>
+                            <option value="HDFC Bank">HDFC Bank</option>
+                            <option value="ICICI Bank">ICICI Bank</option>
+                            <option value="Axis Bank">Axis Bank</option>
+                            <option value="Federal Bank">Federal Bank</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="bank-account-num">Account Number</label>
+                        <input type="text" id="bank-account-num" placeholder="e.g. 5010029384729" pattern="\d{9,18}" title="Please enter 9 to 18 digits account number" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="bank-ifsc">IFSC Code</label>
+                        <input type="text" id="bank-ifsc" placeholder="e.g. HDFC0000012" pattern="^[A-Z]{4}0[A-Z0-9]{6}$" title="Enter a valid 11 character alphanumeric IFSC (e.g. SBIN0001234)" required>
+                    </div>
+
+                    <button type="submit" class="primary-btn btn-full">
+                        <span>Authenticate & Link Bank</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. TRANSACTION DETAIL BOTTOM SHEET RECEIPT -->
+    <div id="receipt-modal" class="modal-overlay hidden">
+        <div class="modal-card receipt-card">
+            <div class="modal-drag-indicator"></div>
+            <div class="receipt-success-badge">
+                <div class="badge-ring">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <h3>Transaction Success</h3>
+                <span class="receipt-date" id="receipt-date-time">July 6, 2026 at 07:40 PM</span>
+            </div>
+            
+            <div class="receipt-amount-display">
+                <span class="receipt-amt-value" id="receipt-display-amount">+₹5,000.00</span>
+                <span class="receipt-amt-desc" id="receipt-display-type">Added to Wallet</span>
+            </div>
+
+            <div class="receipt-details-list">
+                <div class="receipt-row">
+                    <span class="receipt-label">Transaction ID</span>
+                    <span class="receipt-val code" id="receipt-txn-id">TXN-90281-998</span>
+                </div>
+                <div class="receipt-row">
+                    <span class="receipt-label">Status</span>
+                    <span class="receipt-val text-green text-semibold">Settled</span>
+                </div>
+                <div class="receipt-row">
+                    <span class="receipt-label">Account ID</span>
+                    <span class="receipt-val">GXC-9082-1102</span>
+                </div>
+                <div class="receipt-row" id="receipt-row-extra1">
+                    <span class="receipt-label">Funding Source</span>
+                    <span class="receipt-val" id="receipt-extra-val1">HDFC Bank (•••• 8901)</span>
+                </div>
+                <div class="receipt-row hidden" id="receipt-row-extra2">
+                    <span class="receipt-label">Conversion Rate</span>
+                    <span class="receipt-val" id="receipt-extra-val2">1 INR = 0.012 USD</span>
+                </div>
+            </div>
+
+            <button class="primary-btn btn-full" id="btn-close-receipt">
+                <span>Done</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 6a. ADD CONTACT MODAL (Feature 6b - Add Contact Capability) -->
+    <div id="add-contact-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-drag-indicator"></div>
+            <div class="modal-header">
+                <h3 class="modal-title">Add New Contact</h3>
+                <button class="modal-close-btn" id="btn-close-contact-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-contact-form">
+                    <div class="input-group">
+                        <label for="contact-new-name">Contact Name</label>
+                        <input type="text" id="contact-new-name" placeholder="e.g. Rahul" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="contact-new-id">GlobalXChange ID</label>
+                        <input type="text" id="contact-new-id" placeholder="e.g. GXC-8800-4491" required>
+                    </div>
+
+                    <button type="submit" class="primary-btn btn-full">
+                        <span>Save Contact</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. GLOBAL DESTINATIONS EXPLORER MODAL (Feature 3b - Searchable Tourist Directory) -->
+    <div id="tourist-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-drag-indicator"></div>
+            <div class="modal-header">
+                <h3 class="modal-title">Global Destinations Explorer</h3>
+                <button class="modal-close-btn" id="btn-close-tourist-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="pin-instruction">Search a country to explore tourist spots and view local currency values relative to INR.</p>
+                
+                <div class="history-controls" style="margin-bottom: 12px;">
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="tourist-search-input" placeholder="Type country (e.g., France, USA, Japan)...">
+                    </div>
+                </div>
+
+                <div class="tourist-explorer-grid" id="tourist-explorer-grid-container">
+                    <!-- Populated dynamically with cards -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== OFFLINE EASTER EGG OVERLAY ==================== -->
+    <div id="offline-screen" class="offline-overlay hidden">
+        <div class="offline-card">
+            <div class="offline-header">
+                <div class="offline-wifi-broken animate-bounce">
+                    <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                        <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+                        <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+                        <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+                        <path d="M1.42 9a15.91 15.91 0 0 1 8.38-4.32"></path>
+                        <path d="M12 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                    </svg>
+                </div>
+                <h2>Network Disconnected</h2>
+                <p>You have entered offline mode. Your GlobalXChange app is paused until connection is restored.</p>
+            </div>
+
+            <!-- Upgraded Offline Mini-Game (Feature 8) -->
+            <div class="game-container">
+                <div class="game-instructions">
+                    <p class="game-title">🛡️ Portfolio Defense (Orbital Dodge) 🛡️</p>
+                    <p class="game-desc">Rotate your blue yield shield using mouse/touch to block red market risks and collect gold yields!</p>
+                    <button class="secondary-btn btn-sm" id="btn-start-game">Start Playing</button>
+                </div>
+                <div class="game-canvas-wrapper hidden" id="game-canvas-wrapper">
+                    <div class="game-score-board">
+                        <span>Shield Integrity: <strong id="game-health">100%</strong></span>
+                        <span>Score: <strong id="game-score">0</strong></span>
+                    </div>
+                    <canvas id="game-canvas" width="340" height="200"></canvas>
+                    <p class="game-subtext">Move cursor over canvas to rotate shield</p>
+                </div>
+            </div>
+
+            <div class="offline-actions">
+                <button class="primary-btn btn-full" id="btn-reconnect-simulation">
+                    <span>Back Online (Simulate)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript script -->
+    <script src="script.js"></script>
+</body>
+</html>
